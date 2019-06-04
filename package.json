@@ -1,0 +1,34 @@
+{
+  "name": "@amendable/breakpoints",
+  "version": "0.0.1",
+  "main": "dist/commonjs/index.js",
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist/commonjs",
+    "dist/esm"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/amendable/breakpoints",
+  "bugs": {
+    "url": "https://github.com/amendable/breakpoints/issues"
+  },
+  "repository": "amendable/breakpoints",
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-react": "^7.0.0"
+  },
+  "scripts": {
+    "build": "yarn build-esm && yarn build-commonjs",
+    "watch": "BABEL_ENV=commonjs babel src --out-dir dist/commonjs --config-file ./babel.config.js -w",
+    "build-commonjs": "NODE_ENV=production BABEL_ENV=commonjs babel src --out-dir dist/commonjs --config-file ./babel.config.js",
+    "build-esm": "NODE_ENV=production BABEL_ENV=esm babel src --out-dir dist/esm --config-file ./babel.config.js"
+  },
+  "dependencies": {
+    "lodash": "^4.17.11"
+  }
+}
