@@ -1,10 +1,11 @@
 import _ from 'lodash'
+import defaultBreakpoints from './defaultBreakpoints'
 
-export default ({ breakpoints = {} }) => ({
+export default ({ breakpoints = defaultBreakpoints } = { breakpoints: defaultBreakpoints }) => ({
   match: ({ value }) => {
     if (!_.isPlainObject(value)) return
 
-    return !_.isEmpty(_.intersection(_.keys(value), _.concat(_.keys(breakpoints), 'default')))
+    return !_.isEmpty(_.intersection(_.keys(value), _.keys(breakpoints)))
   },
   options: ({ key, value, hashStr }) => ({
     variableName: `--responsive-${hashStr(JSON.stringify({ [key]: value }))}`,
@@ -33,27 +34,26 @@ export default ({ breakpoints = {} }) => ({
       )
     )
 
-    const result = _.map(_.omit(value, 'default'), (val, key) => {
+    const sortedValues = _.reduce(breakpoints, (memo, val, key) => {
+      if (_.isUndefined(value[key])) return memo
+
+      memo[key] = value[key]
+      return memo
+    }, {})
+
+    const result = _.map(sortedValues, (val, key) => {
       if (_.isUndefined(breakpoints[key])) {
         console.warn(`Responsive resolver: ${key} breakpoint missing from config`)
       }
 
       return (
-        `@media (max-width: ${breakpoints[key]}) {
+        `@media (min-width: ${breakpoints[key]}) {
           :root {
             ${variableName}: ${resolve(val) || val};
           }
         }`
       )
     })
-
-    if (!_.isUndefined(value.default)) {
-      result.unshift(`
-        :root {
-          ${variableName}: ${resolve(value.default) || value.default};
-        }
-      `)
-    }
 
     return result.join("\n")
   }
