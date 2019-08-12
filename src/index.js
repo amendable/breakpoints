@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import hash from '@amendable/hash'
 import defaultBreakpoints from './defaultBreakpoints'
 
 export default ({ breakpoints = defaultBreakpoints } = { breakpoints: defaultBreakpoints }) => ({
@@ -7,8 +8,8 @@ export default ({ breakpoints = defaultBreakpoints } = { breakpoints: defaultBre
 
     return !_.isEmpty(_.intersection(_.keys(value), _.keys(breakpoints)))
   },
-  options: ({ key, value, hashStr }) => ({
-    variableName: `--responsive-${hashStr(JSON.stringify({ [key]: value }))}`,
+  options: ({ key, value }) => ({
+    variableName: `--responsive-${hash(JSON.stringify({ [key]: value }))}`,
   }),
   resolve: ({
     key,

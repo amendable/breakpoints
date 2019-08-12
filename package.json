@@ -29,6 +29,7 @@
     "build-esm": "NODE_ENV=production BABEL_ENV=esm babel src --out-dir dist/esm --config-file ./babel.config.js"
   },
   "dependencies": {
+    "@amendable/hash": "^0.1.0",
     "lodash": "^4.17.11"
   }
 }

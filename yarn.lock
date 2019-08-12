@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@amendable/hash@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@amendable/hash/-/hash-0.1.0.tgz#f9cd17b9c7182335d91cccd4853c52a3bc3a6c8a"
+  integrity sha512-6GXUpoahD9LWjChqnQ7mVkBnmtsTORzXbj60+CntjsQw4fvEAVEvzHg+Ai6E6crio2+pjo27gUO7nfacvlxXgQ==
+
 "@babel/cli@^7.4.4":
   version "7.4.4"
   resolved "https://registry.yarnpkg.com/@babel/cli/-/cli-7.4.4.tgz#5454bb7112f29026a4069d8e6f0e1794e651966c"
