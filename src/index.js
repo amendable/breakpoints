@@ -20,7 +20,7 @@ export default ({ breakpoints = defaultBreakpoints } = { breakpoints: defaultBre
   }) => ({
     [key]: `var(${variableName})`,
   }),
-  globalCss: ({
+  css: ({
     key,
     value,
     options: {
@@ -49,9 +49,7 @@ export default ({ breakpoints = defaultBreakpoints } = { breakpoints: defaultBre
 
       return (
         `@media (min-width: ${breakpoints[key]}) {
-          :root {
-            ${variableName}: ${resolve(val) || val};
-          }
+          ${variableName}: ${resolve(val) || val};
         }`
       )
     })
