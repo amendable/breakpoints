@@ -21,7 +21,7 @@ export default ({
     props,
     applyResolvers,
   }) => {
-    const variableName = `--responsive-${hash(JSON.stringify({ [key]: value }))}`
+    const variableName = `--amendable-breakpoints-${hash(JSON.stringify({ [key]: value }))}`
 
     return {
       [key]: `var(${variableName})`,
